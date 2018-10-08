@@ -1,0 +1,44 @@
+
+body{
+    color:#00000;
+    /*background-image:url(img/fondo20.jpg);*/
+    background-color: #4e4f9b;
+    background-size: cover;
+    background-attachment: fixed;
+    border-top-width: 0px;
+    margin-top: 0px; 
+    margin-bottom:0px;
+}
+.cuadro1{
+    background-color:#151515; 
+        border: 1px;size: 0px;
+        border-style: solid;
+        border-color: #383737;
+        padding: 0px;
+        margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+
+
+}
+.cuadro2{
+    background-color:#0c0c0c; 
+        border: 1px;size: 150px;
+        border-style: solid;
+        border-color: #0c0c0c;
+        padding: 800px;
+}
+
+.container1 {
+    width: auto;
+    max-width: 980px;
+    padding: 0 15px;
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+}
