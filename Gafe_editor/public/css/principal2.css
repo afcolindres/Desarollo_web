@@ -1,0 +1,14 @@
+body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: black;
+    background-color: rgb(233, 236, 239);
+}
+
+  .carrruseltext{
+    color: black;
+}
+
+.bg-dark {
+    background-color: rgb(68, 80, 93)!important;
+}
