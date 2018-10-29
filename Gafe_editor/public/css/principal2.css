@@ -23,3 +23,8 @@ body {
     resize: none;
     background-color: rgb(29, 30, 34);
 }
+
+.centrarform{
+    margin-left: auto;
+    margin-right: auto;
+}
