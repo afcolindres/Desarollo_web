@@ -52,7 +52,7 @@
                     <li class="nav-item dropdown">
                         <a style="font-size:20px" class="nav-link dropdown-toggle" href="" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-feather="user"></span>Perfil</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown03">
-                            <a class="dropdown-item" href="#">Ver perfil</a>
+                            <a class="dropdown-item" href="principal.html">Pagina principal</a>
                             <a class="dropdown-item" href="index.html">Salir</a>
                         </div>
                     </li>
@@ -64,33 +64,41 @@
         <div class="container-fluid" style=" margin-top: 50px">
             <div class="row centrarform">
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"></div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 col-10">
                     <h3>Acerca de mi</h3>
                     <br>
                     <div class="row" id="formulario-signup">
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input  class="form-control" type="text" placeholder="First name" id="firstname">
+                            <input  class="form-control" type="text" placeholder="Mi nombre" id="nombre">
                         </div>
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input  class="form-control" type="text" placeholder="Last name" id="lastname">
+                            <input  class="form-control" type="text" placeholder="Mi apellido" id="apellido">
                         </div>
                         <div class=" form-group col-12">
-                            <input class="form-control" type="text" placeholder="Mobile number or email" id="email">
+                            <input class="form-control" type="text" placeholder="Mobile number " id="movil">
                         </div>
                         <div class="form-group col-12">
-                            <input class="form-control" type="password" placeholder="Password" id="password">
+                            <b>Informacion de contacto</b>
+                            <input class="form-control" type="text" placeholder="Mi correo" id="correo">
                         </div>
                         <div class="form-group col-12">
                             <b>Birthday</b>
                             <input class="form-control" type="date" placeholder="Birthday" id= "birthday">
                         </div>
                         <div class="form-group col-12">
-                            <input class="btn btn-success" type="button" value="Sign Up" onclick="registrar();">
+                            <input class="btn btn-success" type="button" value="Editar perfil">
                         </div>
                         
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"></div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div>
+                        <img class="mr-3 rounded-circle img-fluid" src="img/user.svg" height="150px" width="120px">
+                    </div>
+                    <div class="form-group col-12">
+                        <input class="btn btn-success" type="button" value="Subir foto">
+                    </div>
+                </div>
             </div>
         </div>
    
