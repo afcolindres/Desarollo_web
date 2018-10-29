@@ -12,3 +12,14 @@ body {
 .bg-dark {
     background-color: rgb(68, 80, 93)!important;
 }
+
+/*para la pagina de editar codigo*/
+.textoarea{
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px; 
+    width: 100%;
+    resize: none;
+    background-color: rgb(29, 30, 34);
+}
