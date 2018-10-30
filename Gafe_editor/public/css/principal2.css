@@ -28,3 +28,34 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+/*para la pagina editar perfil*/
+.for{
+    background-color: rgb(255, 255, 255);
+    border: 4px;
+    border-radius: 10px;
+    margin: 10px 10px 10px 10px;
+    padding-bottom: 10px;
+    padding-top: 30px;
+    padding-right: 15px;
+    padding-left: 15px; 
+}
+
+.for2{
+    padding-top: 30px; 
+}
+
+
+.textoarea2{
+    overflow-y: scroll;
+}
+
+/*tabla pagina planes*/
+.margenTabla{
+    margin-top: 100px;
+}
+
+.centrardiv{
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -64,39 +64,48 @@
         <div class="container-fluid" style=" margin-top: 50px">
             <div class="row centrarform">
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"></div>
-                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 col-10">
-                    <h3>Acerca de mi</h3>
-                    <br>
-                    <div class="row" id="formulario-signup">
-                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input  class="form-control" type="text" placeholder="Mi nombre" id="nombre">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 col-10"><br>
+                    <div class="row for" id="formulario-signup">
+                        <div class=" form-group col-12">
+                            <input class="form-control" type="text" placeholder="Nombre" id="nombre">
+                        </div>
+                        <div class=" form-group col-12">
+                            <input class="form-control" type="text" placeholder="Apellidos" id="apellido">
                         </div>
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input  class="form-control" type="text" placeholder="Mi apellido" id="apellido">
+                            <select class="form-control" name="slgenero" id="slgenero">
+                                <option>Genero</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <input  class="form-control" type="Date"  id="fecha">
                         </div>
                         <div class=" form-group col-12">
                             <input class="form-control" type="text" placeholder="Mobile number " id="movil">
                         </div>
                         <div class="form-group col-12">
-                            <b>Informacion de contacto</b>
                             <input class="form-control" type="text" placeholder="Mi correo" id="correo">
                         </div>
                         <div class="form-group col-12">
-                            <b>Birthday</b>
-                            <input class="form-control" type="date" placeholder="Birthday" id= "birthday">
+                            <textarea class="form-control textoarea2" name="biografia" id="biografia"  placeholder="Tu biografia" rows="3"></textarea>
                         </div>
                         <div class="form-group col-12">
-                            <input class="btn btn-success" type="button" onclick="location.href='editar-perfil.html'" value="Editar perfil">
+                            <input class="form-control" type="text" placeholder="Sitio web" id="sitio">
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <input class="btn btn-secondary form-control" type="button" onclick="location.href='principal.html'" value="Cancelar">
+                        </div>
+                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <input class="btn btn-success form-control" type="button" value="Actualizar">
                         </div>
                         
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                <div class="for2 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                     <div>
                         <img class="mr-3 rounded-circle img-fluid" src="img/user.svg" height="150px" width="120px">
-                    </div>
-                    <div class="form-group col-12">
-                        <input class="btn btn-success" type="button" value="Subir foto">
                     </div>
                 </div>
             </div>
