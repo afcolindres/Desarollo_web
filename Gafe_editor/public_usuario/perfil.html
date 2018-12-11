@@ -63,40 +63,38 @@
       </nav>
         <div class="container-fluid" style=" margin-top: 50px">
             <div class="row centrarform">
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12"></div>
-                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-10 col-10">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"></div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-10 col-10"><br><br>
                     <h3>Acerca de mi</h3>
                     <br>
                     <div class="row" id="formulario-signup">
-                        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input  class="form-control" type="text" placeholder="Mi nombre" id="nombre">
+                        <!-- <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <span style="font-size:20px">nombre</span>
                         </div>
                         <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <input  class="form-control" type="text" placeholder="Mi apellido" id="apellido">
-                        </div>
+                            <span style="font-size:20px">apellido</span></div>
                         <div class=" form-group col-12">
-                            <input class="form-control" type="text" placeholder="Mobile number " id="movil">
-                        </div>
+                            <span style="font-size:20px">num</span></div>
                         <div class="form-group col-12">
                             <b>Informacion de contacto</b>
-                            <input class="form-control" type="text" placeholder="Mi correo" id="correo">
+                            <span style="font-size:20px">correo</span>   
                         </div>
                         <div class="form-group col-12">
                             <b>Birthday</b>
-                            <input class="form-control" type="date" placeholder="Birthday" id= "birthday">
+                            <span style="font-size:20px">nacimiento</span>    
                         </div>
                         <div class="form-group col-12">
                             <input class="btn btn-success" type="button" onclick="location.href='editar-perfil.html'" value="Editar perfil">
-                        </div>
+                        </div> -->
                         
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                    <div>
-                        <img class="mr-3 rounded-circle img-fluid" src="img/user.svg" height="150px" width="120px">
-                    </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12"><br><br>
+                    <div id="foto">
+                        <!-- <img class="mr-3 rounded-circle img-fluid" src="img/user.svg" height="150px" width="120px"> -->
+                    </div><br>
                     <div class="form-group col-12">
-                        <input class="btn btn-success" type="button" value="Subir foto">
+                        <input class="btn btn-secondary" type="button" value="Subir foto">
                     </div>
                 </div>
             </div>
@@ -129,6 +127,8 @@
     <script>
       feather.replace()
     </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/controlador-perfil.js"></script>
 
     <!-- Graphs -->
     

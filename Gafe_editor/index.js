@@ -38,6 +38,13 @@ app.use(
             return next();
     }
 ); 
+///Para agregar seguridad a una ruta especifica:
+function verificarAutenticacion(req, res, next){
+	if(req.session.correoUsuario)
+		return next();
+	else
+		res.send("ERROR, ACCESO NO AUTORIZADO");
+}
 
 ///******************login*********************** */
 app.post("/login",function(req, res){
@@ -109,6 +116,71 @@ app.post("/registrarUsuario", function(req,res){
             req.session.codigoUsuario = data.insertId;
             req.session.correoUsuario = req.body.email;
             req.session.codigoTipoUsuario = 1;
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+////********************  Perfil ********************** */
+app.get("/perfil",verificarAutenticacion,function(req, res){
+    var codUsu=req.session.codigoUsuario;
+    //console.log(codUsu);
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT CODIGO_USUARIO, NOMBRE, APELLIDOS, CORREO, CONTRASEÑA, FECHA_NACIMIENTO, BIOGRAFIA, CODIGO_GENERO, CODIGO_LUGAR, SITIO_WEB, TIPO_USUARIO,TELEFONO 
+        FROM tbl_usuarios 
+        WHERE CODIGO_USUARIO = ?`,
+        [codUsu],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        });
+});
+
+////********************  Perfil ********************** */
+app.get("/actualizarperfil",verificarAutenticacion,function(req, res){
+    var codUsu=req.session.codigoUsuario;
+    //console.log(codUsu);
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT CODIGO_USUARIO, NOMBRE, APELLIDOS, CORREO, CONTRASEÑA, FECHA_NACIMIENTO, BIOGRAFIA, CODIGO_GENERO, CODIGO_LUGAR, SITIO_WEB, TIPO_USUARIO,TELEFONO 
+        FROM tbl_usuarios 
+        WHERE CODIGO_USUARIO = ?`,
+        [codUsu],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        });
+});
+
+//****************  actualizar perfil usuario ***************** */
+app.post("/actualizarusuario",verificarAutenticacion, function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`UPDATE tbl_usuarios 
+                    SET 
+                        NOMBRE=?,
+                        APELLIDOS=?,
+                        CORREO=?,
+                        FECHA_NACIMIENTO=?,
+                        BIOGRAFIA=?,
+                        CODIGO_GENERO=?,
+                        SITIO_WEB=?,
+                        TELEFONO=? 
+                    WHERE CODIGO_USUARIO = ?`,
+        [req.body.nombre,
+            req.body.apellido,
+            req.body.email,
+            req.body.fecha,
+            req.body.biografia,
+            req.body.genero,
+            req.body.sitio,
+            req.body.movil,
+            req.session.codigoUsuario],
+        function(error, data, fields){
             res.send(data);
             res.end();
             conexion.end();
