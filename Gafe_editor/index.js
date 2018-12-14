@@ -1,7 +1,7 @@
 var express = require("express");
 var mysql = require("mysql");
 var bodyParser = require("body-parser");
-//var bcrypt = require('bcrypt-nodejs');
+var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var sha1 = require('sha1');
 var app = express();
@@ -13,6 +13,7 @@ var credenciales = {
     database: "bd_gafe"
 };
 
+app.use(cookieParser());
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -187,6 +188,50 @@ app.post("/actualizarusuario",verificarAutenticacion, function(req,res){
         }
     );
 });
+
+
+//*************************usando cookies *********************** */
+
+app.get("/cookie_plan/:cod_plan",function(req, res){
+    res.cookie("cod_plan",req.params.cod_plan);
+    res.send(req.params.cod_plan);
+    res.end();
+});
+
+app.get("/obtener_cookie_codPlan",function(req, res){
+    res.send("La cookie almacenada es : " + req.cookies.cod_plan);
+    res.end();
+});
+
+
+///*******************registrar compra de plan******************* */
+
+app.post("/registrar_compra",verificarAutenticacion, function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`INSERT INTO tbl_tarjeta_credito (NUMERO_TARJETA, CODIGO_SEGURIDAD) 
+                    VALUES (?,?)`,
+        [req.body.numero_tarjeta, req.body.cod_tarjeta],
+        function(error, data, fields){
+            var cod_tarjeta=data.insertId;
+            //console.log(cod_tarjeta);
+            if(data.insertId!=0){
+                conexion.query(`INSERT INTO tbl_historial_pago (FECHA_PAGO, FECHA_FIN, CODIGO_PLAN, CODIGO_USUARIO, CODIGO_TARGETA)
+                VALUES (CURDATE(),ADDDATE(CURDATE(), INTERVAL 30 DAY),?,?,?)`,
+                    [req.cookies.cod_plan,req.session.codigoUsuario,cod_tarjeta],
+                    function(error, data, fields){
+                       
+                    }
+                );
+            }
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+
+
 
 app.listen(8008, function(){ 
     console.log("Servidor iniciado");

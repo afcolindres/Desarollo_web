@@ -119,35 +119,21 @@
                                     </span>
                                 </div>
                                 <div class="radForm">
-                                    <label class="floating-label unfocused firstName ui-label ui-input-label">
-                                        <input data-testid="firstName" placeholder="Nombre" class="ui-text-input medium" id="ipt-nombre" >
-                                    </label>
-                                    <label class="floating-label unfocused lastName ui-label ui-input-label">
-                                        <input data-testid="lastName" placeholder="Apellidos" class="ui-text-input medium" id="ipt-apellido">
-                                    </label>
                                     <div class="cardNumberContainer">
                                         <label class="floating-label unfocused creditCardNumber ui-label ui-input-label">
-                                            <input type="tel" placeholder="Número de tarjeta" class="ui-text-input medium" id="ipt-numTarjet" >
+                                            <input type="tel" placeholder="Número de tarjeta" class="ui-text-input medium" id="numTarjet" >
                                         </label>
                                     </div>
-                                    <label class="floating-label unfocused creditExpirationMonth ui-label ui-input-label">
-                                        <input type="tel" class="ui-text-input medium" placeholder="Fecha de vencimiento (MM/AA)" value="" id="ipt-fechaV">
-                                    </label>
                                     <label class="floating-label unfocused creditCardSecurityCode ui-label ui-input-label">
-                                        <input type="tel" data-testid="creditCardSecurityCode" class="ui-text-input medium" placeholder="Código de seguridad (CVV)" id="ipt-codigoV">
+                                        <input type="tel" data-testid="creditCardSecurityCode" class="ui-text-input medium" placeholder="Código de seguridad (CVV)" id="codigoV">
                                     </label>
-                                </div>
-                                <div class="changePlanContainer">
-                                    <div class="changePlanTitle">TU PLAN</div>
-                                    <div class="planDesc" id="info-plan"></div>
-                                    <a class="changePlanLink pointer" onclick="cambiarPlan()">Cambiar</a>
                                 </div>
                                 <div class="radForm">
                                     <div class="signupTerms" id="inicio-gratis">
                                         <span>
                                             <p>Al hacer click en el botón "Iniciar suscripción" a continuación, aceptas nuestros<a target="blank" href="">Términos de uso</a>, nuestra <a target="blank" href="">Declaración de privacidad</a> y que ya has cumplido los 18. Puedes cancelar la suscripción cuando quieras durante la prueba gratuita y no se te cobrará nada. Para cancelarla, ve a la página web de tu cuenta y haz clic en "Cancelar suscripción".</p>
                                             <p>
-                                            <b>Si no la cancelas, cuando termine tu periodo gratuito de prueba Gafe editor dará por hecho automáticamente que tu suscripción sigue en vigor y te cobrará la tarifa correspondiente (tarifa actual <span id="tarifa"></span>) a través de tu forma de pago cada mes.</b> No recibirás reembolsos ni créditos por los meses parciales.</p>
+                                            <b>Si no la cancelas, cuando termine tu periodo gratuito de prueba Gafe editor dará por hecho automáticamente que tu suscripción sigue en vigor y te cobrará la tarifa correspondiente (tarifa actual <span id="tarifa"></span>) a través de tu forma de pago cada mes.</b> </p>
                                         </span>
                                     </div>
                                 </div>
@@ -157,7 +143,7 @@
                 </div>
             </div>
             <div class=" modal-footer">
-                <input class=" form-control btn-red btn-large" type="button" onclick="location.href='principal.html'" value="Iniciar Suscripcion">
+                <input id="btn-plan" class=" form-control btn-red btn-large" type="button" value="Iniciar Suscripcion">
             </div>
           </div>
         </div>
@@ -171,11 +157,12 @@
     
     <script type="text/javascript" src="js/jquery.min.js" ></script>
     <script type="text/javascript" src="js/bootstrap.min.js" ></script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
                   
             $(document).ready(function(){
                 cargardatos();
             });
-    </script>
+    </script> -->
+    <script src="js/controlador_compra.js"></script>
 </body>
 </html>
