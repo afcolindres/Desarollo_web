@@ -24,17 +24,23 @@ $("#actualizar").click(function(){
 ////***********************Atualizar usuario******************************* */
     var parametros=`nombre=${$("#nombre").val()}&apellido=${$("#apellido").val()}&email=${$("#correo").val()}&fecha=${$("#fecha").val()}&genero=${$("#slgenero").val()}&movil=${$("#movil").val()}&biografia=${$("#biografia").val()}&sitio=${$("#sitio").val()}`;
     //alert(parametros);
-     $.ajax({
-          url:"/actualizarusuario",
-          method: "POST",
-          data: parametros,
-          dataType: "json",
-          success: function (respuesta) {
-              //console.log(respuesta.length);
-              location.href="/perfil.html";
-          },
-          error: function (error) {
-              console.error(error);
-          }
-      });
+    if($("#fecha").val()=="" && $("#movil").val()=="" ){
+        document.getElementById("fecha").style.borderColor="red";
+        document.getElementById("movil").style.borderColor="red";
+        return;
+    }else{
+        $.ajax({
+            url:"/actualizarusuario",
+            method: "POST",
+            data: parametros,
+            dataType: "json",
+            success: function (respuesta) {
+                //console.log(respuesta.length);
+                location.href="/perfil.html";
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
 });

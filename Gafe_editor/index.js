@@ -109,9 +109,9 @@ app.post("/consultausuario", function(req,res){
 ///***************************registro de usuarios************************ */
 app.post("/registrarUsuario", function(req,res){
     var conexion = mysql.createConnection(credenciales);
-    conexion.query(`INSERT INTO tbl_usuarios(NOMBRE, APELLIDOS, CORREO, CONTRASEÑA, CODIGO_GENERO,TIPO_USUARIO) 
-                    VALUES (?,?,?,?,?,?)`,
-        [req.body.nombre,req.body.apellido,req.body.email, sha1(req.body.password),req.body.genero,1],
+    conexion.query(`INSERT INTO tbl_usuarios(NOMBRE, APELLIDOS, CORREO, CONTRASEÑA, CODIGO_GENERO,TIPO_USUARIO,PLAN) 
+                    VALUES (?,?,?,?,?,?,?)`,
+        [req.body.nombre,req.body.apellido,req.body.email, sha1(req.body.password),req.body.genero,1,0],
         function(error, data, fields){
             console.log(error);
             req.session.codigoUsuario = data.insertId;
@@ -182,6 +182,8 @@ app.post("/actualizarusuario",verificarAutenticacion, function(req,res){
             req.body.movil,
             req.session.codigoUsuario],
         function(error, data, fields){
+           // console.log(data);
+            //console.log(error);
             res.send(data);
             res.end();
             conexion.end();
@@ -213,16 +215,69 @@ app.post("/registrar_compra",verificarAutenticacion, function(req,res){
         [req.body.numero_tarjeta, req.body.cod_tarjeta],
         function(error, data, fields){
             var cod_tarjeta=data.insertId;
-            //console.log(cod_tarjeta);
+            //console.log(error);
+            console.log(cod_tarjeta);
             if(data.insertId!=0){
                 conexion.query(`INSERT INTO tbl_historial_pago (FECHA_PAGO, FECHA_FIN, CODIGO_PLAN, CODIGO_USUARIO, CODIGO_TARGETA)
                 VALUES (CURDATE(),ADDDATE(CURDATE(), INTERVAL 30 DAY),?,?,?)`,
                     [req.cookies.cod_plan,req.session.codigoUsuario,cod_tarjeta],
                     function(error, data, fields){
-                       
+                        var cod_regis=data.insertId;
+                        //console.log(cod_regis);
+                        if(cod_regis!=0){
+                            console.log("hola");
+                            conexion.query(`UPDATE tbl_usuarios 
+                                            SET PLAN = ${req.cookies.cod_plan} 
+                                            WHERE CODIGO_USUARIO = ${req.session.codigoUsuario}`,
+                                [],
+                                function(error, data, fields){
+                                    //console.log(data);
+                                    console.log(error);
+                                    console.log(req.cookies.cod_plan);
+                                    console.log(req.session.codigoUsuario);
+                                }
+                            );
+                        }
                     }
                 );
             }
+            res.send(data);
+            res.end();
+        }
+    );
+});
+
+
+app.get("/cant_proyectos",verificarAutenticacion,function(req, res){
+    var codUsu=req.session.codigoUsuario;
+    //console.log(codUsu);
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT b.CODIGO_USUARIO,b.PLAN, COUNT(*) as CANT_PROYECTOS
+                    FROM tbl_proyectos a
+                    INNER JOIN (SELECT CODIGO_USUARIO, PLAN
+                    FROM tbl_usuarios  ) b 
+                    on (a.CODIGO_USUARIO=b.CODIGO_USUARIO)
+                    WHERE b.CODIGO_USUARIO=?`,
+        [codUsu],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        });
+});
+
+
+
+app.post("/proyectos", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`INSERT INTO tbl_proyectos(NOMBRE, FECHA_CREACION, CODIGO_USUARIO) 
+                    VALUES (?,CURDATE(),?)`,
+        [req.body.nombre_proyecto,req.session.codigoUsuario],
+        function(error, data, fields){
+            //console.log(error);
+            res.cookie("nombre_proyecto",req.body.nombre_proyecto);
+            console.log(data);
             res.send(data);
             res.end();
             conexion.end();
@@ -230,8 +285,51 @@ app.post("/registrar_compra",verificarAutenticacion, function(req,res){
     );
 });
 
+app.get("/proyectos_creados", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT COD_PROYECTO, NOMBRE, FECHA_CREACION, CODIGO_USUARIO 
+                    FROM tbl_proyectos 
+                    WHERE  CODIGO_USUARIO=?`,
+        [req.session.codigoUsuario],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
 
+app.get("/ver_proyecto", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT COD_PROYECTO, NOMBRE, FECHA_CREACION, CODIGO_USUARIO 
+                    FROM tbl_proyectos 
+                    WHERE  NOMBRE=?`,
+        [req.cookies.nombre_proyecto],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
 
+app.post("/archivos", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`INSERT INTO tbl_proyectos(NOMBRE, FECHA_CREACION, CODIGO_USUARIO) 
+                    VALUES (?,CURDATE(),?)`,
+        [req.body.nombre_proyecto,req.session.codigoUsuario],
+        function(error, data, fields){
+            //console.log(error);
+            res.cookie("nombre_proyecto",req.body.nombre_proyecto);
+            console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
 
 app.listen(8008, function(){ 
     console.log("Servidor iniciado");

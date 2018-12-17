@@ -90,9 +90,9 @@
                                 <!-- <a class="dropdown-item" href="editar-codigo.html">Proyecto</a>
                                 <a class="dropdown-item" href="#">Carpeta</a>
                                 <a class="dropdown-item" href="#">Archivo</a> -->
-                                <button id="proyecto" type="button" class="btn btn-link dropdown-item">Proyecto</button>
-                                <button id="carpeta" type="button" class="btn btn-link dropdown-item">Carpeta</button>
-                                <button id="archivo" type="button" class="btn btn-link dropdown-item">Archivo</button>
+                                <button id="proyectos" type="button" class="btn btn-link dropdown-item" data-toggle="modal" data-target="#proyecto">Proyecto</button>
+                                <button id="carpetas" type="button" class="btn btn-link dropdown-item" data-toggle="modal" data-target="#carpeta">Carpeta</button>
+                                <button id="archivos" type="button" class="btn btn-link dropdown-item" data-toggle="modal" data-target="#archivo">Archivo</button>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -131,79 +131,79 @@
                   </nav>
                   
                   <main style="margin-top:50px" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                        <h3>Carpetas</h3><br>
+                        <h3>Mis carpetas y archivos</h3><br>
                         <div class="container">
                             <div class="col-12 row">
-                                <div class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+                                <div style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                     <div>
-                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="150px" width="120px">
+                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.jpg" height="64px" width="64px">
                                     </div>
                                     <div>
                                         <strong>Nombre carpeta</strong> 
                                     </div>
-                                </div>
+                                </div> <br>
                                 <div class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
-                                    <div>
-                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="150px" width="120px">
+                                    <div style="text-align:center">
+                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="64px" width="64px">
                                     </div>
                                     <div>
                                         <strong>Nombre carpeta</strong> 
                                     </div>
-                                </div>
+                                </div><br>
                                 <div class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                     <div>
-                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="150px" width="120px">
+                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="64px" width="64px">
                                     </div>
                                     <div>
                                         <strong>Nombre carpeta</strong> 
                                     </div>
-                                </div>
+                                </div><br>
                                 <div class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                     <div>
-                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="150px" width="120px">
+                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="64px" width="64px">
                                     </div>
                                     <div>
                                         <strong>Nombre carpeta</strong> 
                                     </div>
-                                </div>
+                                </div><br>
                                 <div class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                     <div>
-                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="150px" width="120px">
+                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="64px" width="64px">
                                     </div>
                                     <div>
                                         <strong>Nombre carpeta</strong> 
                                     </div>
-                                </div>
+                                </div><br>
                                 <div class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                     <div>
-                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="150px" width="120px">
+                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="64px" width="64px">
                                     </div>
                                     <div>
                                         <strong>Nombre carpeta</strong> 
                                     </div>
-                                </div>
+                                </div><br>
                                 <div class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                     <div>
-                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="150px" width="120px">
+                                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.svg" height="64px" width="64px">
                                     </div>
                                     <div>
                                         <strong>Nombre carpeta</strong> 
                                     </div>
-                                </div>
+                                </div><br>
                             </div>
                         </div>
                         <br><br>
-                    <h3>Archivos</h3><br>
+                    <h3>Mis Proyectos</h3><br>
                     <div class="container">
-                        <div class="col-12 row">
-                            <div class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+                        <div class="col-12 row" id="div_proyectos">
+                            <!-- <div style="text-align:center" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                 <div>
-                                    <img class="mr-3 rounded-circle img-fluid" src="img/clipboard.svg" height="150px" width="120px">
+                                    <img class="mr-3  img-fluid" src="img/proyectoss.jpg" height="86px" width="86px">
                                 </div>
                                 <div>
                                     <strong>Nombre archivo</strong> 
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <br><br>
@@ -215,7 +215,68 @@
                 </div>
               </div>
       
+<!-- Modal -->
+    <div class="modal fade" id="proyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Crear proyecto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <input class="form-control" id="txt-proyecto" type="text" placeholder="Nombre del proyecto">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="button" id="crear_proyecto" class="btn btn-primary">Crear proyecto</button>
+            </div>
+        </div>
+        </div>
+    </div>
 
+<!-- Modal -->
+<div class="modal fade" id="carpeta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear carpetas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <input class="form-control" id="txt-carpeta" type="text" placeholder="Nombre de la carpeta">
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" id="crear_carpeta" class="btn btn-primary">Crear carpeta</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="archivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear archivo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <input class="form-control" id="txt-archivo" type="text" placeholder="nombre_archivo.js / nombre_archivo.html / nombre_archivo.css ">
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" id="crear_archivo" class="btn btn-primary">Crear archivo</button>
+        </div>
+    </div>
+    </div>
+</div>
 
       <!-- FOOTER -->
       
@@ -224,17 +285,21 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script> -->
     <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="js/holder.min.js"></script>
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
       feather.replace()
     </script>
+    <script src="js/jquery.min.js" ></script>
+    <script src="js/bootstrap.min.js"></script>
 
+
+    <script src="js/controlador_principal.js"></script>
     <!-- Graphs -->
     
     

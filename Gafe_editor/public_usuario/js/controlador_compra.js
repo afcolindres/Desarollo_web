@@ -8,7 +8,7 @@ $("#btn-plan").click(function(){
         data:parametros,
         dataType:"json",
         success:function(res){
-            window.location.href = "/editar-codigo.html";
+            window.location.href = "/principal.html";
         },
         error:function(error){
             console.error(error);
