@@ -131,8 +131,17 @@
                   </nav>
                   
                   <main style="margin-top:50px" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                        <h3>Mis carpetas y archivos</h3><br>
+                        <h4>Mis carpetas y archivos</h4><br>
                         <div class="container">
+                            <div class="col-12 row" >
+                                
+                                <div style="margin-bottom: 20px" class="separar col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                    <div>
+                                        <button class="btn btn-success" data-toggle="modal" data-target="#carpeta">Nueva Carpeta</button>
+                                    </div>
+                                </div> <br>
+
+                            </div>
                             <div class="col-12 row" id="div_carpetas">
                                 <!-- <div id="1" onclick="obtener_cod_carpeta(1);" style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                     <div>
@@ -154,20 +163,7 @@
                             </div>
                         </div>
                         <br><br>
-                    <h3>Mis Proyectos</h3><br>
-                    <div class="container">
-                        <div class="col-12 row" id="div_proyectos">
-                            <!-- <div style="text-align:center" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
-                                <div>
-                                    <img class="mr-3  img-fluid" src="img/proyectoss.jpg" height="86px" width="86px">
-                                </div>
-                                <div>
-                                    <strong>Nombre archivo</strong> 
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                    <br><br>
+                    
                     <footer class="container">
                         <p class="float-right"><a class="carrruseltext" href="#">Back to top</a></p>
                         <p>&copy; 2017-2018 Gafe editor, Inc. &middot; <a class="carrruseltext" href="#">Privacy</a> &middot; <a class="carrruseltext" href="#">Terms</a></p>
@@ -176,26 +172,7 @@
                 </div>
               </div>
       
-<!-- Modal -->
-    <div class="modal fade" id="proyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear proyecto</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            <input class="form-control" id="txt-proyecto" type="text" placeholder="Nombre del proyecto">
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" id="crear_proyecto" class="btn btn-primary">Crear proyecto</button>
-            </div>
-        </div>
-        </div>
-    </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="carpeta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -218,7 +195,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal
 <div class="modal fade" id="archivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -237,7 +214,7 @@
         </div>
     </div>
     </div>
-</div>
+</div> -->
 
       <!-- FOOTER -->
       
@@ -260,7 +237,7 @@
     <script src="js/bootstrap.min.js"></script>
 
 
-    <script src="js/controlador_principal.js"></script>
+    <script src="js/controlador_principal_sub_carpeta.js"></script>
     <!-- Graphs -->
     
     

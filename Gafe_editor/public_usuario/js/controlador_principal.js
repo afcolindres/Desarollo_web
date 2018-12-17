@@ -71,7 +71,7 @@ $("#crear_proyecto").click(function(){
                         }
                     });
                  } else {
-                    alert("redirigir comprar plan");
+                    //alert("redirigir comprar plan");
                     window.location.href = "/planes.html";
                  }
             } else if (respuesta[0].PLAN ==3) {
@@ -101,6 +101,8 @@ $("#crear_proyecto").click(function(){
 
 $(document).ready(function(){
     //alert("hola");
+    cargar_carpetas();
+    cargar_archivos();
     cargar_proyectos();
 
 });
@@ -134,19 +136,22 @@ function cargar_proyectos() {
 $("#crear_archivo").click(function(){
     var nombre=$("#txt-archivo").val();
     arregloDeSubCadenas = nombre.split(".");
-    var nombre1=arregloDeSubCadenas[0];
+    //var nombre1=arregloDeSubCadenas[0];
     var extension=arregloDeSubCadenas[1];
     
-    var parametros=`nombre_archivo=${$("#txt-archivo").val()}&extesnsion=${extension}`;
+    var parametros=`nombre_archivo=${$("#txt-archivo").val()}&extension=${extension}`;
     $.ajax({
         url:"/archivos",
         method:"POST",
         data:parametros,
         dataType:"json",
         success:function(res){
-            console.log(res);
-            alert("se guardo el archivo");
-            //cargar_proyectos();
+            //console.log(res);
+            $("#archivo").modal("toggle");
+            //alert("se guardo el archivo");
+            $("#div_carpetas").html("");
+            cargar_carpetas();
+            cargar_archivos();
             //window.location.href = "/editar-codigo.html";
         },
         error:function(error){
@@ -154,3 +159,123 @@ $("#crear_archivo").click(function(){
         }
     });
 });
+
+
+function cargar_archivos() {
+    $.ajax({
+		url:"/archivos_creados",
+		method:"GET",
+		dataType:"json",
+		success:function(res){
+            //console.log(res);
+            
+            for (var i = 0; i < res.length; i++) {
+                if(res[i].CODIGO_TIPO_ARCHIVO==1){
+                    $("#div_carpetas").append(`
+                    
+                    <div style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+                        <div>
+                            <img class="mr-3 rounded-circle img-fluid" src="img/html.jpg" height="64px" width="64px">
+                        </div>
+                        <div>
+                            <strong>${res[i].NOMBRE_ARCHIVO}</strong> 
+                        </div>
+                    </div> <br>`
+                );
+                }else if(res[i].CODIGO_TIPO_ARCHIVO==2){
+                    $("#div_carpetas").append(`
+                    
+                    <div style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+                        <div>
+                            <img class="mr-3 rounded-circle img-fluid" src="img/css3.jpg" height="64px" width="64px">
+                        </div>
+                        <div>
+                            <strong>${res[i].NOMBRE_ARCHIVO}</strong> 
+                        </div>
+                    </div> <br>`
+                    );
+                } else  {
+                    $("#div_carpetas").append(`
+                    
+                    <div style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+                        <div>
+                            <img class="mr-3 rounded-circle img-fluid" src="img/js.jpg" height="64px" width="64px">
+                        </div>
+                        <div>
+                            <strong>${res[i].NOMBRE_ARCHIVO}</strong> 
+                        </div>
+                    </div> <br>`
+                    );
+                }
+            }
+		},
+		error:function(error){
+			console.error(error);
+		}
+	});
+}
+
+
+function obtener_cod_carpeta(id){
+    alert("Obtener codigo carpeta: " + id);
+    $.ajax({
+        url:`/cookie_carpeta/${id}`,
+        method:"GET",
+        dataType:"json",
+        success:function(res){
+            location.href="principal-Sub-carpeta.html"
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+}
+
+
+$("#crear_carpeta").click(function(){
+    var parametros=`nombre_carpeta=${$("#txt-carpeta").val()}`;
+    $.ajax({
+        url:"/carpetas",
+        method:"POST",
+        data:parametros,
+        dataType:"json",
+        success:function(res){
+            //console.log(res);
+            $("#carpeta").modal("toggle");
+            //alert("se guardo la carpeta");
+            $("#div_carpetas").html("");
+            cargar_carpetas()
+            cargar_archivos();
+            //window.location.href = "/editar-codigo.html";
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+});
+
+function cargar_carpetas() {
+    $.ajax({
+		url:"/carpetas_creadas",
+		method:"GET",
+		dataType:"json",
+		success:function(res){
+            for (var i = 0; i < res.length; i++) {
+                $("#div_carpetas").append(`
+                <div id="${res[i].CODIGO_CARPETA}" ondblclick="obtener_cod_carpeta(${res[i].CODIGO_CARPETA});" style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+                    <div>
+                        <img class="mr-3 rounded-circle img-fluid" src="img/folder.jpg" height="64px" width="64px">
+                    </div>
+                    <div>
+                        <strong>${res[i].NOMBRE_CARPETA}</strong> 
+                    </div>
+                </div> <br>
+                    `
+                );
+            }
+		},
+		error:function(error){
+			console.error(error);
+		}
+	});
+}

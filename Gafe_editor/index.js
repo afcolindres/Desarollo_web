@@ -194,9 +194,9 @@ app.post("/actualizarusuario",verificarAutenticacion, function(req,res){
 
 //*************************usando cookies *********************** */
 
-app.get("/cookie_plan/:cod_plan",function(req, res){
-    res.cookie("cod_plan",req.params.cod_plan);
-    res.send(req.params.cod_plan);
+app.get("/cookie_carpeta/:cod_carpeta_padre",function(req, res){
+    res.cookie("cod_carpeta_padre",req.params.cod_carpeta_padre);
+    res.send(req.params.cod_carpeta_padre);
     res.end();
 });
 
@@ -205,6 +205,11 @@ app.get("/obtener_cookie_codPlan",function(req, res){
     res.end();
 });
 
+app.get("/cookie_plan/:cod_plan",function(req, res){
+    res.cookie("cod_plan",req.params.cod_plan);
+    res.send(req.params.cod_plan);
+    res.end();
+});
 
 ///*******************registrar compra de plan******************* */
 
@@ -277,7 +282,7 @@ app.post("/proyectos", function(req,res){
         function(error, data, fields){
             //console.log(error);
             res.cookie("nombre_proyecto",req.body.nombre_proyecto);
-            console.log(data);
+            //console.log(data);
             res.send(data);
             res.end();
             conexion.end();
@@ -316,13 +321,21 @@ app.get("/ver_proyecto", function(req,res){
 });
 
 app.post("/archivos", function(req,res){
+    var cod_archivo;
+    if(req.body.extension=="html"){
+        cod_archivo=1;
+    }else if(req.body.extension=="css"){
+        cod_archivo=2;
+    }else {
+        cod_archivo=3;
+    }
     var conexion = mysql.createConnection(credenciales);
-    conexion.query(`INSERT INTO tbl_proyectos(NOMBRE, FECHA_CREACION, CODIGO_USUARIO) 
-                    VALUES (?,CURDATE(),?)`,
-        [req.body.nombre_proyecto,req.session.codigoUsuario],
+    conexion.query(`INSERT INTO tbl_archivos(NOMBRE_ARCHIVO, FECHA_CREACION, CODIGO_TIPO_ARCHIVO, CODIGO_USUARIO) 
+                    VALUES (?,CURDATE(),?,?)`,
+        [req.body.nombre_archivo,cod_archivo,req.session.codigoUsuario],
         function(error, data, fields){
             //console.log(error);
-            res.cookie("nombre_proyecto",req.body.nombre_proyecto);
+            
             console.log(data);
             res.send(data);
             res.end();
@@ -331,6 +344,80 @@ app.post("/archivos", function(req,res){
     );
 });
 
+app.get("/archivos_creados", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT CODIGO_ARCHIVO, NOMBRE_ARCHIVO, FECHA_CREACION, CODIGO_TIPO_ARCHIVO, CODIGO_USUARIO, CODIGO_ESTADO
+                    FROM tbl_archivos
+                    WHERE CODIGO_USUARIO=?`,
+        [req.session.codigoUsuario],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+app.post("/carpetas", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`INSERT INTO tbl_carpetas(NOMBRE_CARPETA, FECHA_CREACION, CODIGO_USUARIO_PROPIETARIO) 
+                    VALUES (?,CURDATE(),?)`,
+        [req.body.nombre_carpeta,req.session.codigoUsuario],
+        function(error, data, fields){
+            //console.log(error);
+            console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+app.get("/carpetas_creadas", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT CODIGO_CARPETA, NOMBRE_CARPETA, FECHA_CREACION, CODIGO_ESTADO, CODIGO_USUARIO_PROPIETARIO, CODIGO_CARPETA_PADRE
+                    FROM tbl_carpetas 
+                    WHERE CODIGO_USUARIO_PROPIETARIO =? and CODIGO_CARPETA_PADRE IS NULL`,
+        [req.session.codigoUsuario],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+app.post("/sub_carpetas", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`INSERT INTO tbl_carpetas(NOMBRE_CARPETA, FECHA_CREACION, CODIGO_USUARIO_PROPIETARIO,CODIGO_CARPETA_PADRE) 
+                    VALUES (?,CURDATE(),?,?)`,
+        [req.body.nombre_carpeta,req.session.codigoUsuario,req.cookies.cod_carpeta_padre],
+        function(error, data, fields){
+            //console.log(error);
+            console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+app.get("/sub_carpetas_creadas", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT CODIGO_CARPETA, NOMBRE_CARPETA, FECHA_CREACION, CODIGO_ESTADO, CODIGO_USUARIO_PROPIETARIO, CODIGO_CARPETA_PADRE 
+                    FROM tbl_carpetas
+                    WHERE CODIGO_USUARIO_PROPIETARIO =? and CODIGO_CARPETA_PADRE=?`,
+        [req.session.codigoUsuario,req.cookies.cod_carpeta_padre],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
 app.listen(8008, function(){ 
     console.log("Servidor iniciado");
 });
