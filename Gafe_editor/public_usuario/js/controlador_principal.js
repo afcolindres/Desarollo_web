@@ -217,7 +217,7 @@ function cargar_archivos() {
 
 
 function obtener_cod_carpeta(id){
-    alert("Obtener codigo carpeta: " + id);
+    //alert("Obtener codigo carpeta: " + id);
     $.ajax({
         url:`/cookie_carpeta/${id}`,
         method:"GET",
