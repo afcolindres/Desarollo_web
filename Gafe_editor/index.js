@@ -366,7 +366,7 @@ app.post("/carpetas", function(req,res){
         [req.body.nombre_carpeta,req.session.codigoUsuario],
         function(error, data, fields){
             //console.log(error);
-            console.log(data);
+            //console.log(data);
             res.send(data);
             res.end();
             conexion.end();
@@ -396,7 +396,7 @@ app.post("/sub_carpetas", function(req,res){
         [req.body.nombre_carpeta,req.session.codigoUsuario,req.cookies.cod_carpeta_padre],
         function(error, data, fields){
             //console.log(error);
-            console.log(data);
+            //console.log(data);
             res.send(data);
             res.end();
             conexion.end();
