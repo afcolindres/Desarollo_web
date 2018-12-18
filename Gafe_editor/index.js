@@ -354,7 +354,7 @@ app.get("/archivos_creados", function(req,res){
     var conexion = mysql.createConnection(credenciales);
     conexion.query(`SELECT CODIGO_ARCHIVO, NOMBRE_ARCHIVO, FECHA_CREACION, CODIGO_TIPO_ARCHIVO, CODIGO_USUARIO, CODIGO_ESTADO
                     FROM tbl_archivos
-                    WHERE CODIGO_USUARIO=?`,
+                    WHERE CODIGO_USUARIO=? and COD_PROYECTO is NULL`,
         [req.session.codigoUsuario],
         function(error, data, fields){
             //console.log(data);

@@ -33,7 +33,7 @@ $("#crear_archivo").click(function(){
     var extension=arregloDeSubCadenas[1];
     
     var parametros=`nombre_archivo=${$("#txt-archivo").val()}&extension=${extension}&contenido=${$("#valor").val()}`;
-	alert(parametros);
+	//alert(parametros);
 	$.ajax({
         url:"/archivos_proyectos",
         method:"POST",
@@ -61,7 +61,7 @@ $("#crear_archivo1").click(function(){
     var extension=arregloDeSubCadenas[1];
     
     var parametros=`nombre_archivo=${$("#txt-archivo1").val()}&extension=${extension}&contenido=${$("#valor1").val()}`;
-	alert(parametros);
+	//alert(parametros);
 	$.ajax({
         url:"/archivos_proyectos",
         method:"POST",
@@ -89,7 +89,7 @@ $("#crear_archivo2").click(function(){
     var extension=arregloDeSubCadenas[1];
     
     var parametros=`nombre_archivo=${$("#txt-archivo2").val()}&extension=${extension}&contenido=${$("#valor2").val()}`;
-	alert(parametros);
+	//alert(parametros);
 	$.ajax({
         url:"/archivos_proyectos",
         method:"POST",
