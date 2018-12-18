@@ -200,6 +200,12 @@ app.get("/cookie_carpeta/:cod_carpeta_padre",function(req, res){
     res.end();
 });
 
+app.get("/cookie_proyecto/:cod_proyecto_padre",function(req, res){
+    res.cookie("cod_proyecto_padre",req.params.cod_proyecto_padre);
+    res.send(req.params.cod_proyecto_padre);
+    res.end();
+});
+
 app.get("/obtener_cookie_codPlan",function(req, res){
     res.send("La cookie almacenada es : " + req.cookies.cod_plan);
     res.end();
@@ -282,6 +288,7 @@ app.post("/proyectos", function(req,res){
         function(error, data, fields){
             //console.log(error);
             res.cookie("nombre_proyecto",req.body.nombre_proyecto);
+            res.cookie("id_proyecto",data.insertId);
             //console.log(data);
             res.send(data);
             res.end();
@@ -335,8 +342,7 @@ app.post("/archivos", function(req,res){
         [req.body.nombre_archivo,cod_archivo,req.session.codigoUsuario],
         function(error, data, fields){
             //console.log(error);
-            
-            console.log(data);
+            //console.log(data);
             res.send(data);
             res.end();
             conexion.end();
@@ -418,6 +424,50 @@ app.get("/sub_carpetas_creadas", function(req,res){
         }
     );
 });
+
+
+////++++++++++ archivos por proyectos////////////////////////
+app.post("/archivos_proyectos", function(req,res){
+    var cod_archivo;
+    if(req.body.extension=="html"){
+        cod_archivo=1;
+    }else if(req.body.extension=="css"){
+        cod_archivo=2;
+    }else {
+        cod_archivo=3;
+    }
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`INSERT INTO tbl_archivos(NOMBRE_ARCHIVO, FECHA_CREACION, CODIGO_TIPO_ARCHIVO, CODIGO_USUARIO,CONTENIDO_ARCHIVO, COD_PROYECTO) 
+                    VALUES (?,CURDATE(),?,?,?,?)`,
+        [req.body.nombre_archivo,cod_archivo,req.session.codigoUsuario,req.body.contenido,req.cookies.id_proyecto],
+        function(error, data, fields){
+            //console.log(error);
+            
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+app.get("/archivos_proyectos_creados", function(req,res){
+    //console.log(req.co.cod_proyecto_padre);
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT CODIGO_ARCHIVO, NOMBRE_ARCHIVO, FECHA_CREACION, CODIGO_TIPO_ARCHIVO, CODIGO_USUARIO, CODIGO_ESTADO, COD_PROYECTO
+                    FROM tbl_archivos
+                    WHERE CODIGO_USUARIO=? and COD_PROYECTO=?`,
+        [req.session.codigoUsuario,req.cookies.cod_proyecto_padre ],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+
 app.listen(8008, function(){ 
     console.log("Servidor iniciado");
 });

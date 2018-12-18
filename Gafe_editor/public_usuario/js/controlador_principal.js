@@ -116,7 +116,7 @@ function cargar_proyectos() {
             //console.log(res);
             for (var i = 0; i < res.length; i++) {
                 $("#div_proyectos").append(`
-                    <div style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
+                    <div id="${res[i].COD_PROYECTO}" ondblclick="obtener_cod_proyecto(${res[i].COD_PROYECTO});" style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                         <div>
                             <img class="mr-3  img-fluid" src="img/proyectoss.jpg" height="86px" width="86px">
                         </div>
@@ -224,6 +224,21 @@ function obtener_cod_carpeta(id){
         dataType:"json",
         success:function(res){
             location.href="principal-Sub-carpeta.html"
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+}
+
+function obtener_cod_proyecto(id){
+    //alert("Obtener codigo carpeta: " + id);
+    $.ajax({
+        url:`/cookie_proyecto/${id}`,
+        method:"GET",
+        dataType:"json",
+        success:function(res){
+            location.href="archivos_proyectos.html"
         },
         error:function(error){
             console.error(error);

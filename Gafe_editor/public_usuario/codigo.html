@@ -80,10 +80,7 @@
     <div class="container-fluid" style="background-color:black; margin-top: 50px">
         <div class="row" style="background-color:rgb(39, 40, 34);color: rgb(255, 255, 255);">
             <div  class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <h2>HTML &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i style="font-size:25px" class="fa fa-plus fa-2x  pull-right" aria-hidden="true" onclick="modalRegistro()"></i></h2> 
-                <!-- <div class="col-sm-1 col-xs-1  heading-dot pull-right">
-                        
-                      </div> -->
+                <h2>HTML</h2>
                 <div id="editor" style="
                                         margin-left: auto;
                                         margin-right: auto;
@@ -94,7 +91,7 @@
                
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <h2>JS &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i style="font-size:25px" class="fa fa-plus fa-2x  pull-right" aria-hidden="true" onclick="modalRegistro1()"></i></h2>
+                <h2>JS</h2>
                 <div id="editorJS" style="
                                         margin-left: auto;
                                         margin-right: auto;
@@ -104,7 +101,7 @@
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <h2>CSS &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i style="font-size:25px" class="fa fa-plus fa-2x  pull-right" aria-hidden="true" onclick="modalRegistro2()"></i></h2>
+                <h2>CSS</h2>
                 <div id="editorCSS" style="
                                         margin-left: auto;
                                         margin-right: auto;
@@ -112,78 +109,16 @@
                                         width: 100%;
                                         resize: none;">
                 </div>
-                <input type="hidden" name="" id="valor">
-                <input type="hidden" name="" id="valor1">
-                <input type="hidden" name="" id="valor2">
             </div>
         </div> <br><br>
         <div class="row" style="background-color:rgb(54, 56, 63);">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-                <iframe id="iframe" style="background-color:rgb(54, 56, 63); width:100%; height: 300px"  frameborder="0"></iframe>
+                <iframe id="iframe" style="border-color:red; width:100%; height: 300px"  frameborder="0"></iframe>
             </div>
         </div>
     </div>
 
-<!-- MODALLLLL -->
-    <div class="modal fade" id="archivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crear archivo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                <input class="form-control" id="txt-archivo" type="text" placeholder="nombre_archivo.js / nombre_archivo.html / nombre_archivo.css ">
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" id="crear_archivo" class="btn btn-primary">Crear archivo</button>
-                </div>
-            </div>
-            </div>
-        </div>  
-<!-- MODALLLLL -->
-<div class="modal fade" id="archivo1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear archivo</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            <input class="form-control" id="txt-archivo1" type="text" placeholder="nombre_archivo.js / nombre_archivo.html / nombre_archivo.css ">
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" id="crear_archivo1" class="btn btn-primary">Crear archivo</button>
-            </div>
-        </div>
-        </div>
-    </div> 
-<!-- MODALLLLL -->
-<div class="modal fade" id="archivo2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crear archivo</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            <input class="form-control" id="txt-archivo2" type="text" placeholder="nombre_archivo.js / nombre_archivo.html / nombre_archivo.css ">
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" id="crear_archivo2" class="btn btn-primary">Crear archivo</button>
-            </div>
-        </div>
-        </div>
-    </div>                   
+                    
                   
       
 
@@ -224,12 +159,9 @@
 <body>
     ${editor.getValue()}
     ${editorJS.getValue()} `
-        
+        //editor.getValue()
         );
         idoc.close();
-        $("#valor").val(`${editor.getValue()}`);
-        $("#valor1").val(`${editorJS.getValue()}`);
-        $("#valor2").val(`${editorCSS.getValue()}`);   
     }
 
     function setupEditor(){
@@ -309,7 +241,6 @@
         setupEditorJS();
         setupEditorCSS();
         update();
-        
 </script>
     <!-- Graphs -->
     
