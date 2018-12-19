@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a style="font-size:20px" class="nav-link dropdown-toggle" href="" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></span>  Perfil</a>
+                        <a style="font-size:20px" class="nav-link dropdown-toggle" href="" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> </span> Perfil</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown03">
                             <a class="dropdown-item" href="perfil.html">Ver perfil</a>
                             <a class="dropdown-item" href="/cerrar-sesion">Salir</a>
@@ -102,7 +102,7 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">
+                          <a class="nav-link" href="proyectos_compartidos.html">
                             <span data-feather="share-2"></span>
                             Archivos compartidos
                           </a>
@@ -131,9 +131,9 @@
                   </nav>
                   
                   <main style="margin-top:50px" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                        <h4>Archivos del proyecto</h4><br>
+                        <h4>Archivos Compartidos</h4><br>
                         <div class="container">
-                            <div class="col-12 row" id="div_carpetas">
+                            <div class="col-12 row" id="div_proyectos_compartidos">
                                 <!-- <div id="1" onclick="obtener_cod_carpeta(1);" style="text-align:center; margin-bottom: 20px" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                     <div>
                                         <img class="mr-3 rounded-circle img-fluid" src="img/folder.jpg" height="64px" width="64px">
@@ -162,34 +162,6 @@
                   </main>
                 </div>
               </div>
-      
-
-
-<!-- Modal -->
-<div class="modal fade" id="carpeta" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear carpetas</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="modal-body">
-        <input class="form-control" id="txt-carpeta" type="text" placeholder="Nombre de la carpeta">
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" id="crear_carpeta" class="btn btn-primary">Crear carpeta</button>
-        </div>
-    </div>
-    </div>
-</div>
-
-
-
-      <!-- FOOTER -->
-      
  <script src="js/popper.min.js"></script>
     
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
@@ -202,8 +174,7 @@
     <script src="js/bootstrap.min.js"></script>
 
 
-    <script src="js/controlador_archivos_proyectos.js"></script>
-    <!-- <script src="js/controlador_archivos_proyectos_compartido.js"></script> -->
+    <script src="js/controlador_archivos_compartidos.js"></script>
     <!-- Graphs -->
     
     

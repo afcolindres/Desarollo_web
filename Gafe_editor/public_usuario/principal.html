@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a style="font-size:20px" class="nav-link dropdown-toggle" href="" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-feather="user"></span>Perfil</a>
+                        <a style="font-size:20px" class="nav-link dropdown-toggle" href="" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> </span> Perfil</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown03">
                             <a class="dropdown-item" href="perfil.html">Ver perfil</a>
                             <a class="dropdown-item" href="/cerrar-sesion">Salir</a>
@@ -102,7 +102,7 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">
+                          <a class="nav-link" href="proyectos_compartidos.html">
                             <span data-feather="share-2"></span>
                             Archivos compartidos
                           </a>
@@ -156,6 +156,15 @@
                         <br><br>
                     <h3>Mis Proyectos</h3><br>
                     <div class="container">
+                            <div class="col-12 row" >
+                                
+                                    <div style="margin-bottom: 20px" class="separar col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                        <div>
+                                            <button class="btn btn-success" data-toggle="modal" data-target="#compartir_proyecto">Compartir Proyectos</button>
+                                        </div>
+                                    </div> <br>
+    
+                                </div>
                         <div class="col-12 row" id="div_proyectos">
                             <!-- <div style="text-align:center" class="separar col-xl-2 col-lg-2 col-md-2 col-sm-3 col-3">
                                 <div>
@@ -238,6 +247,33 @@
     </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="compartir_proyecto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Compartir Proyectos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <b>Seleccionar proyecto</b> <select class="form-control" name="" id="mis_proyectos">
+                    
+                </select><br>
+                <b>Seleccionar Usuario</b> <select class="form-control" name="" id="usuarios">
+                    
+                    </select><br>
+                <input class="form-control" style="background-color:green; color: black; display: none" type="text" id="confirmar_com" value="SE COMPARTIO EL ARCHIVO SELECCIONADO">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" id="compartir" class="btn btn-primary">Compartir proyecto</button>
+            </div>
+        </div>
+        </div>
+    </div>
 
       <!-- FOOTER -->
       

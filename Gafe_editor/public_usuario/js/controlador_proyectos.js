@@ -42,7 +42,7 @@ $("#crear_archivo").click(function(){
         success:function(res){
             //console.log(res);
             $("#archivo").modal("toggle");
-            alert("se guardo el archivo");
+            //alert("se guardo el archivo");
             //$("#div_carpetas").html("");
             //cargar_carpetas();
             //cargar_archivos();
@@ -70,7 +70,7 @@ $("#crear_archivo1").click(function(){
         success:function(res){
             //console.log(res);
             $("#archivo1").modal("toggle");
-            alert("se guardo el archivo");
+            //alert("se guardo el archivo");
             //$("#div_carpetas").html("");
             //cargar_carpetas();
             //cargar_archivos();
@@ -98,7 +98,7 @@ $("#crear_archivo2").click(function(){
         success:function(res){
             //console.log(res);
             $("#archivo2").modal("toggle");
-            alert("se guardo el archivo");
+            //alert("se guardo el archivo");
             //$("#div_carpetas").html("");
             //cargar_carpetas();
             //cargar_archivos();

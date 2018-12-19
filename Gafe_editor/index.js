@@ -206,6 +206,13 @@ app.get("/cookie_proyecto/:cod_proyecto_padre",function(req, res){
     res.end();
 });
 
+app.get("/cookie_compartios/:cod_com/:cod_dueno",function(req, res){
+    res.cookie("cod_com",req.params.cod_com);
+    res.cookie("cod_dueno",req.params.cod_dueno);
+    res.send(req.params.cod_com);
+    res.end();
+});
+
 app.get("/obtener_cookie_codPlan",function(req, res){
     res.send("La cookie almacenada es : " + req.cookies.cod_plan);
     res.end();
@@ -312,6 +319,39 @@ app.get("/proyectos_creados", function(req,res){
     );
 });
 
+app.get("/proyectos_compartidos", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT a.CODIGO_PROYECTO, a.CODIGO_USUARIO, a.CODIGO_USUARIO_COMPARTIDO, b.NOMBRE
+                    FROM tbl_proyectos_compartid0s_x_usuario a
+                    INNER JOIN (SELECT COD_PROYECTO, NOMBRE
+                                FROM tbl_proyectos ) b 
+                    ON (a.CODIGO_PROYECTO=b.COD_PROYECTO)
+                    WHERE a.CODIGO_USUARIO_COMPARTIDO =?`,
+        [req.session.codigoUsuario],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+app.get("/usuarios_registrados", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT CODIGO_USUARIO, NOMBRE, APELLIDOS
+                    FROM tbl_usuarios 
+                    WHERE CODIGO_USUARIO <> ?`,
+        [req.session.codigoUsuario],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
 app.get("/ver_proyecto", function(req,res){
     var conexion = mysql.createConnection(credenciales);
     conexion.query(`SELECT COD_PROYECTO, NOMBRE, FECHA_CREACION, CODIGO_USUARIO 
@@ -343,6 +383,19 @@ app.post("/archivos", function(req,res){
         function(error, data, fields){
             //console.log(error);
             //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+app.post("/compartir_proyectos", function(req,res){
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`INSERT INTO tbl_proyectos_compartid0s_x_usuario (CODIGO_PROYECTO, CODIGO_USUARIO, CODIGO_USUARIO_COMPARTIDO) 
+                    VALUES (?,?,?)`,
+        [req.body.cod_proyecto,req.session.codigoUsuario,req.body.cod_usuario_compartir],
+        function(error, data, fields){
             res.send(data);
             res.end();
             conexion.end();
@@ -458,6 +511,22 @@ app.get("/archivos_proyectos_creados", function(req,res){
                     FROM tbl_archivos
                     WHERE CODIGO_USUARIO=? and COD_PROYECTO=?`,
         [req.session.codigoUsuario,req.cookies.cod_proyecto_padre ],
+        function(error, data, fields){
+            //console.log(data);
+            res.send(data);
+            res.end();
+            conexion.end();
+        }
+    );
+});
+
+app.get("/archivos_proyectos_creados_compartidos", function(req,res){
+    //console.log(req.co.cod_proyecto_padre);
+    var conexion = mysql.createConnection(credenciales);
+    conexion.query(`SELECT CODIGO_ARCHIVO, NOMBRE_ARCHIVO, FECHA_CREACION, CODIGO_TIPO_ARCHIVO, CODIGO_USUARIO, CODIGO_ESTADO, COD_PROYECTO
+                    FROM tbl_archivos
+                    WHERE CODIGO_USUARIO=? and COD_PROYECTO=?`,
+        [req.cookies.cod_dueno,req.cookies.cod_com],
         function(error, data, fields){
             //console.log(data);
             res.send(data);

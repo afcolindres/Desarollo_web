@@ -104,6 +104,7 @@ $(document).ready(function(){
     cargar_carpetas();
     cargar_archivos();
     cargar_proyectos();
+    cargar_proyectos_compartidos();
 
 });
 
@@ -132,6 +133,46 @@ function cargar_proyectos() {
 		}
 	});
 }
+
+
+function cargar_proyectos_compartidos() {
+    $.ajax({
+		url:"/proyectos_creados",
+		method:"GET",
+		dataType:"json",
+		success:function(res){
+            //console.log(res);
+            for (var i = 0; i < res.length; i++) {
+                $("#mis_proyectos").append(`
+                <option value="${res[i].COD_PROYECTO}">${res[i].NOMBRE}</option>
+                `);
+            }
+
+            $.ajax({
+                url:"/usuarios_registrados",
+                method:"GET",
+                dataType:"json",
+                success:function(res){
+                    //console.log(res);
+                    for (var i = 0; i < res.length; i++) {
+                        $("#usuarios").append(`
+                        <option value="${res[i].CODIGO_USUARIO}">${res[i].NOMBRE} ${res[i].APELLIDOS}</option>
+                        `);
+                    }
+                },
+                error:function(error){
+                    console.error(error);
+                }
+            });
+		},
+		error:function(error){
+			console.error(error);
+		}
+	});
+}
+
+
+
 
 $("#crear_archivo").click(function(){
     var nombre=$("#txt-archivo").val();
@@ -223,6 +264,7 @@ function obtener_cod_carpeta(id){
         method:"GET",
         dataType:"json",
         success:function(res){
+            
             location.href="principal-Sub-carpeta.html"
         },
         error:function(error){
@@ -294,3 +336,21 @@ function cargar_carpetas() {
 		}
 	});
 }
+
+
+$("#compartir").click(function(){
+    var parametros=`cod_proyecto=${$("#mis_proyectos").val()}&cod_usuario_compartir=${$("#usuarios").val()}`;
+    alert(parametros);
+    $.ajax({
+        url:"/compartir_proyectos",
+        method:"POST",
+        data:parametros,
+        dataType:"json",
+        success:function(res){
+            document.getElementById("confirmar_com").style.display="block";
+        },
+        error:function(error){
+            console.error(error);
+        }
+    });
+});

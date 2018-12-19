@@ -17,8 +17,6 @@
   <link href="css/principal2.css" rel="stylesheet">
   <link href="css/dashboard.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    
   </head>
 <body >
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top bg-dark">
@@ -53,18 +51,18 @@
             <ul class="navbar-nav mr-100px">
                 <li class="nav-item">
                     <a style="font-size:20px" class="nav-link" href="#">
-                        <span data-feather="download"></span>
-                        Descargar
+                        <!-- <span data-feather="download"></span>
+                        Descargar -->
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a style="font-size:20px" class="nav-link" href="#">
-                        <span data-feather="cloud"></span>
-                        Guardar
+                    <a style="font-size:20px" class="nav-link" href="principal.html">
+                            <i class="far fa-arrow-alt-circle-left"></i>
+                        Regresar
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a style="font-size:20px" class="nav-link dropdown-toggle" href="" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-feather="user"></span>Salir</a>
+                    <a style="font-size:20px" class="nav-link dropdown-toggle" href="" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> </span> Salir</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown03">
                         <a class="dropdown-item" href="perfil.html">Ver perfil</a>
                         <a class="dropdown-item" href="principal.html">Pagina principal</a>
@@ -76,14 +74,15 @@
         </form>
     </div>
     </nav>
-    
     <div class="container-fluid" style="background-color:black; margin-top: 50px">
         <div class="row" style="background-color:rgb(39, 40, 34);color: rgb(255, 255, 255);">
             <div  class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <h2>HTML &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i style="font-size:25px" class="fa fa-plus fa-2x  pull-right" aria-hidden="true" onclick="modalRegistro()"></i></h2> 
-                <!-- <div class="col-sm-1 col-xs-1  heading-dot pull-right">
-                        
-                      </div> -->
+                <h2>HTML &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+                    <i style="font-size:25px" class="fas fa-calendar-plus ExportToWord" aria-hidden="true" onclick="modalRegistro()"></i>
+                    &nbsp 
+                    <button class="btn btn-success "id="link"><i style="font-size:25px" class="fas fa-arrow-alt-circle-down "></i></button>
+                </h2> 
+                
                 <div id="editor" style="
                                         margin-left: auto;
                                         margin-right: auto;
@@ -94,7 +93,11 @@
                
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <h2>JS &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i style="font-size:25px" class="fa fa-plus fa-2x  pull-right" aria-hidden="true" onclick="modalRegistro1()"></i></h2>
+                <h2>JS &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <i style="font-size:25px" class="fas fa-calendar-plus" aria-hidden="true" onclick="modalRegistro1()"></i>
+                    &nbsp 
+                    <button class="btn btn-success" id="link1"><i style="font-size:25px" class="fas fa-arrow-alt-circle-down "></i></button>
+                </h2>
                 <div id="editorJS" style="
                                         margin-left: auto;
                                         margin-right: auto;
@@ -104,7 +107,11 @@
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                <h2>CSS &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<i style="font-size:25px" class="fa fa-plus fa-2x  pull-right" aria-hidden="true" onclick="modalRegistro2()"></i></h2>
+                <h2>CSS &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <i style="font-size:25px" class="fas fa-calendar-plus" aria-hidden="true" onclick="modalRegistro2()"></i>
+                    &nbsp &nbsp 
+                    <button class="btn btn-success "id="link2"><i style="font-size:25px" class="fas fa-arrow-alt-circle-down "></i></button>
+                </h2>
                 <div id="editorCSS" style="
                                         margin-left: auto;
                                         margin-right: auto;
@@ -116,7 +123,7 @@
                 <input type="hidden" name="" id="valor1">
                 <input type="hidden" name="" id="valor2">
             </div>
-        </div> <br><br>
+        </div> 
         <div class="row" style="background-color:rgb(54, 56, 63);">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                 <iframe id="iframe" style="background-color:rgb(54, 56, 63); width:100%; height: 300px"  frameborder="0"></iframe>
@@ -183,7 +190,18 @@
             </div>
         </div>
         </div>
-    </div>                   
+    </div> 
+    
+    <div style="display:none" >
+        <textarea style="display:none" id="contenidohtml"></textarea>
+    </div>
+    <div style="display:none" >
+        <input style="display:none" type="text" name="" id="contenidojs">
+    </div>
+    <div style="display:none" >
+        <textarea style="display:none" id="contenidocss"></textarea>
+    </div>
+    
                   
       
 
@@ -229,7 +247,11 @@
         idoc.close();
         $("#valor").val(`${editor.getValue()}`);
         $("#valor1").val(`${editorJS.getValue()}`);
-        $("#valor2").val(`${editorCSS.getValue()}`);   
+        $("#valor2").val(`${editorCSS.getValue()}`);
+        $("#contenidohtml").html(`${editor.getValue()}`);
+        $("#contenidojs").val(`${editorJS.getValue()}`);
+        $("#contenidocss").html(`${editorCSS.getValue()}`);  
+       
     }
 
     function setupEditor(){
@@ -311,8 +333,97 @@
         update();
         
 </script>
+
+<!--******************** gestion de archivos **********************-->
+
+<script>
+function obtenerDatos() {
+  return {
+    nombre: document.getElementById('contenidohtml').value
+  };
+};
+
+function generarTexto(datos) {
+  var texto = [];
+  texto.push(datos.nombre);
+  return new Blob(texto, {
+    type: 'text/plain'
+  });
+};
+
+function obtenerDatos1() {
+   var nombrejss= document.getElementById('contenidojs').value;
+   //alert( nombrejss);
+  return {
+    nombrejs: document.getElementById('contenidojs').value
+  };
+};
+
+function generarTexto1(datos) {
+  var textojs = [];
+  textojs.push(datos.nombrejs);
+  return new Blob(textojs, {
+    type: 'text/plain'
+  });
+};
+
+function obtenerDatos2() {
+  return {
+    nombrecss: document.getElementById('contenidocss').value
+  };
+};
+
+function generarTexto2(datos) {
+  var textocss = [];
+  textocss.push(datos.nombrecss);
+  return new Blob(textocss, {
+    type: 'text/plain'
+  });
+};
+ 
+document.getElementById('link').addEventListener('click', function () {
+  var datoshtml = obtenerDatos();
+  descargarArchivo(generarTexto(datoshtml), 'archivo.txt');
+}, false);
+
+document.getElementById('link1').addEventListener('click', function () {
+  var datosjs = obtenerDatos1();
+  descargarArchivo(generarTexto1(datosjs), 'archivo.txt');
+}, false);
+
+document.getElementById('link2').addEventListener('click', function () {
+  var datoscss = obtenerDatos2();
+  descargarArchivo(generarTexto2(datoscss), 'archivo.txt');
+}, false);
+
+function descargarArchivo(contenidoEnBlob, nombreArchivo) {
+  //creamos un FileReader para leer el Blob
+  var reader = new FileReader();
+  //Definimos la función que manejará el archivo
+  //una vez haya terminado de leerlo
+  reader.onload = function (event) {
+    //Usaremos un link para iniciar la descarga 
+    var save = document.createElement('a');
+    save.href = event.target.result;
+    save.target = '_blank';
+    //Truco: así le damos el nombre al archivo 
+    save.download = nombreArchivo || 'archivo.dat';
+    var clicEvent = new MouseEvent('click', {
+      'view': window,
+      'bubbles': true,
+      'cancelable': true
+    });
+    //Simulamos un clic del usuario
+    //no es necesario agregar el link al DOM.
+    save.dispatchEvent(clicEvent);
+    //Y liberamos recursos...
+    (window.URL || window.webkitURL).revokeObjectURL(save.href);
+  };
+  //Leemos el blob y esperamos a que dispare el evento "load"
+  reader.readAsDataURL(contenidoEnBlob);
+};
+</script>
     <!-- Graphs -->
-    
     
   </body>
 </html>
